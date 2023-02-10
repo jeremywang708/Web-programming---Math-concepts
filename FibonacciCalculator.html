@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci Calculator</title>
+    <style>
+        body {
+            background-image: url(Images/Math.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            opacity: 1;
+        }
+        .header {
+            background-image: url(Images/Web\ programming.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            opacity: 1;
+
+            font-family: 'Comic Sans MS', cursive;
+            font-size: 40px;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            text-transform: uppercase;
+            text-align: center;
+        }
+        .footer {
+            font-family: 'Comic Sans MS', cursive;
+            font-size: 10px;
+            text-align: center;
+        }
+        .nav-link:hover {
+            background-color: rgb(205, 187, 53);
+            opacity: 0.5;
+            transition: all 0.2s ease-in-out;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 2px rgba(205, 187, 53, 0.5);
+        }
+        .col-sm-3 {
+            font-family: 'Comic Sans MS', cursive;
+            font-size: 15px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        .col-sm-9 {
+            color: black;
+            font-family: 'Comic Sans MS', cursive;
+            text-align: left;
+        }
+        .bordered {
+            border: 2px solid #5fd1dc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px 2px rgba(63, 81, 181, 0.2);
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    
+</head>
+<body>
+    
+    <div class="container">
+        <div class="header">
+            <h2>
+                Computer Engineering Technology <br>
+                Web Programming
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 bordered">
+                <h1 style="color:blue;">Menu</h1>
+                <dl class="nav">
+                    <dt class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </dt>
+                    <dt class="nav-item">
+                        <a class="nav-link" href="AreaCalculator.html">Area Calculator</a>
+                    </dt>
+                    <dt class="nav-item">
+                        <a class="nav-link" href="FibonacciCalculator.html">Fibonacci Calculator</a>
+                    </dt>
+                    <dt class="nav-item">
+                        <a class="nav-link" href="GCDCalculator.html">GCD Calculator</a>
+                    </dt>
+                </dl>
+            </div>
+            <div class="col-sm-9 bordered">
+                <h4><strong>This program calculates the highest number in the Fibonacci series</strong></h4>
+                <div ng-app="fibonacciApp" ng-controller="fibonacciCtrl">
+                    <p style="height: 20px;"></p>
+                    <p><strong>Please enter the maximum sequence number of the Fibonacci series:</strong></p>
+                    <p>
+                      <label>Max sequence number:</label>
+                      <input type="number" ng-model="maxSequenceNumber" min="0" max="9999999999999">
+                    </p>
+                    <p style="height: 20px;"></p>
+                    <p><strong>Fibonacci number F<sub>{{maxSequenceNumber}}</sub>: {{ fibonacciNumber }}</strong></p>
+                    <p style="height: 20px;"></p>
+                </div>
+                <script>
+                    var app = angular.module("fibonacciApp", []);
+                    app.controller("fibonacciCtrl", function($scope) {
+                    $scope.fibonacciNumber = 0;
+                    $scope.$watch("maxSequenceNumber", function() {
+                      if ($scope.maxSequenceNumber === 0) {
+                        $scope.fibonacciNumber = 0;
+                      } else {
+                        var a = 0, b = 1, temp;
+                        for (var i = 2; i <= $scope.maxSequenceNumber; i++) {
+                          temp = a + b;
+                          a = b;
+                          b = temp;
+                        }
+                        $scope.fibonacciNumber = b;
+                      }
+                    });
+                  });
+                </script>           
+            </div>
+        <div class="footer">
+            Student name: Yun Wang <br>
+            Student number: 041069121 <br>
+            Email: <a href="mailto:wang0885@algonquinlive.com">wang0885@algonquinlive.com</a>
+        </div>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+</body>
+</html>
